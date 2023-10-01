@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react'
 import EntryList from './EntryList'
 
-const GradesTable = ({ grades }) => {
+const GradesTable = ({ grades, query, option }) => {
     const [totalQPI, setTotalQPI] = useState(0.0)
 
     useEffect(() => {
@@ -11,6 +11,12 @@ const GradesTable = ({ grades }) => {
         )
         setTotalQPI(grades.length > 0 ? sumQPI / grades.length : 0)
     })
+
+    const filtered_entries = grades.filter(grade =>
+        option === 'course_number'
+            ? grade.course_number.toLowerCase().includes(query.toLowerCase())
+            : grade.course_name.toLowerCase().includes(query.toLowerCase())
+    )
 
     return (
         <table
@@ -57,7 +63,7 @@ const GradesTable = ({ grades }) => {
                     Grade
                 </th>
             </tr>
-            <EntryList list={grades} />
+            <EntryList list={filtered_entries} />
             <tr>
                 <th colSpan='2'></th>
                 <th align='center'>Total QPI:</th>

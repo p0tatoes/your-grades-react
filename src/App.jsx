@@ -2,9 +2,11 @@ import { useEffect, useState } from 'react'
 import './App.css'
 import CourseForm from './components/CourseForm'
 import GradesTable from './components/GradesTable'
+import SearchBar from './components/SearchBar'
 
 function App() {
     /**
+     *  Object for grade entry
      *  {
      *      course_number: string
      *      course_name: string
@@ -14,6 +16,12 @@ function App() {
      */
     const [gradeEntries, setGradeEntries] = useState([])
 
+    // query from the SearchBar text field
+    const [searchQuery, setSearchQuery] = useState('')
+
+    // search filter option from SearchBar dropdown
+    const [searchOption, setSearchOption] = useState('course_number')
+
     /**
      * Adds new grade entry on form submission
      *
@@ -22,7 +30,9 @@ function App() {
     const handleSubmit = e => {
         e.preventDefault()
 
-        let submission_data = new FormData(e.target)
+        const form = e.target
+
+        let submission_data = new FormData(form)
 
         setGradeEntries([
             ...gradeEntries,
@@ -33,6 +43,16 @@ function App() {
                 grade: submission_data.get('grades'),
             },
         ])
+    }
+
+    const handleSearchQuery = e => {
+        const query = e.target.value
+        setSearchQuery(query)
+    }
+
+    const handleSearchOption = e => {
+        const query = e.target.value
+        setSearchOption(query)
     }
 
     return (
@@ -48,7 +68,24 @@ function App() {
             }}
         >
             <CourseForm onsubmit={handleSubmit} />
-            <GradesTable grades={gradeEntries} />
+            <div
+                style={{
+                    display: 'flex',
+                    flexDirection: 'column',
+                    gap: '0.25rem',
+                }}
+            >
+                <SearchBar
+                    query={searchQuery}
+                    ontype={handleSearchQuery}
+                    onchange={handleSearchOption}
+                />
+                <GradesTable
+                    grades={gradeEntries}
+                    query={searchQuery}
+                    option={searchOption}
+                />
+            </div>
         </div>
     )
 }
