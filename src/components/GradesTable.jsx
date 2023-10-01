@@ -6,8 +6,7 @@ const GradesTable = ({ grades }) => {
 
     useEffect(() => {
         const sumQPI = grades.reduce(
-            (total, grade_entry) =>
-                parseFloat(total) + parseFloat(grade_entry.grade),
+            (total, grade_entry) => total + parseFloat(grade_entry.grade),
             0.0
         )
         setTotalQPI(grades.length > 0 ? sumQPI / grades.length : 0)
