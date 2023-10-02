@@ -12,10 +12,10 @@ const GradesTable = ({ grades, query }) => {
         setTotalQPI(grades.length > 0 ? sumQPI / grades.length : 0)
     })
 
-    const filtered_entries = grades.filter(grade =>
-        option === 'course_number'
-            ? grade.course_number.toLowerCase().includes(query.toLowerCase())
-            : grade.course_name.toLowerCase().includes(query.toLowerCase())
+    const filtered_entries = grades.filter(
+        grade =>
+            grade.course_number.toLowerCase().includes(query.toLowerCase()) ||
+            grade.course_name.toLowerCase().includes(query.toLowerCase())
     )
 
     return (
