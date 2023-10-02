@@ -2,8 +2,10 @@ import { useEffect, useState } from 'react'
 import EntryList from './EntryList'
 
 const GradesTable = ({ grades, query }) => {
+    // state for the calculated total QPI of added courses
     const [totalQPI, setTotalQPI] = useState(0.0)
 
+    // updates calculated total QPI on renders
     useEffect(() => {
         const sumQPI = grades.reduce(
             (total, grade_entry) => total + parseFloat(grade_entry.grade),
@@ -12,6 +14,7 @@ const GradesTable = ({ grades, query }) => {
         setTotalQPI(grades.length > 0 ? sumQPI / grades.length : 0)
     })
 
+    // array of filtered grade entries based on search bar inputs
     const filtered_entries = grades.filter(
         grade =>
             grade.course_number.toLowerCase().includes(query.toLowerCase()) ||
