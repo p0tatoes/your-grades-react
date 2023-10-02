@@ -1,4 +1,4 @@
-const SearchBar = ({ ontype, onchange, query }) => {
+const SearchBar = ({ ontype, query }) => {
     return (
         <div
             style={{
@@ -15,14 +15,6 @@ const SearchBar = ({ ontype, onchange, query }) => {
                 value={query}
                 onChange={ontype}
             />
-            <select
-                name='search_option'
-                id='search_option'
-                onChange={onchange}
-            >
-                <option value='course_number'>Course No.</option>
-                <option value='course_name'>Course Name</option>
-            </select>
         </div>
     )
 }

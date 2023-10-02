@@ -19,9 +19,6 @@ function App() {
     // query from the SearchBar text field
     const [searchQuery, setSearchQuery] = useState('')
 
-    // search filter option from SearchBar dropdown
-    const [searchOption, setSearchOption] = useState('course_number')
-
     /**
      * Adds new grade entry on form submission
      *
@@ -50,11 +47,6 @@ function App() {
         setSearchQuery(query)
     }
 
-    const handleSearchOption = e => {
-        const query = e.target.value
-        setSearchOption(query)
-    }
-
     return (
         <div
             id='app'
@@ -78,7 +70,6 @@ function App() {
                 <SearchBar
                     query={searchQuery}
                     ontype={handleSearchQuery}
-                    onchange={handleSearchOption}
                 />
                 <GradesTable
                     grades={gradeEntries}
