@@ -74,7 +74,6 @@ function App() {
                 <GradesTable
                     grades={gradeEntries}
                     query={searchQuery}
-                    option={searchOption}
                 />
             </div>
         </div>

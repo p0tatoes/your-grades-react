@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react'
 import EntryList from './EntryList'
 
-const GradesTable = ({ grades, query, option }) => {
+const GradesTable = ({ grades, query }) => {
     const [totalQPI, setTotalQPI] = useState(0.0)
 
     useEffect(() => {
