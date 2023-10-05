@@ -15,10 +15,7 @@ const GradesTable = ({ grades, query }) => {
                 parseFloat(grade_entry.grade) * parseFloat(grade_entry.units)
             )
         }, 0.0)
-        // const sumUnits = grades.reduce(
-        //     (total, grade_entry) => total + parseFloat(grade_entry.units),
-        //     0.0
-        // )
+
         setTotalQPI(
             grades.length > 0 ? (sumGradeUnits / sumUnits).toFixed(2) : 0
         )
