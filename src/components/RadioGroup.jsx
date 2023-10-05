@@ -1,4 +1,6 @@
 const RadioGroup = ({ radio_list, group_id }) => {
+    //TODO: Add huh dog if selected radio button is F
+
     let list = new Array(radio_list.length).fill(null)
 
     for (const key in radio_list) {

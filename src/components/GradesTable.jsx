@@ -7,11 +7,21 @@ const GradesTable = ({ grades, query }) => {
 
     // updates calculated total QPI on renders
     useEffect(() => {
-        const sumQPI = grades.reduce(
-            (total, grade_entry) => total + parseFloat(grade_entry.grade),
-            0.0
+        let sumUnits = 0.0
+        const sumGradeUnits = grades.reduce((total, grade_entry) => {
+            sumUnits += parseFloat(grade_entry.units)
+            return (
+                total +
+                parseFloat(grade_entry.grade) * parseFloat(grade_entry.units)
+            )
+        }, 0.0)
+        // const sumUnits = grades.reduce(
+        //     (total, grade_entry) => total + parseFloat(grade_entry.units),
+        //     0.0
+        // )
+        setTotalQPI(
+            grades.length > 0 ? (sumGradeUnits / sumUnits).toFixed(2) : 0
         )
-        setTotalQPI(grades.length > 0 ? sumQPI / grades.length : 0)
     })
 
     // array of filtered grade entries based on search bar inputs
